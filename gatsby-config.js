@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -25,6 +29,14 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: `gatsby-plugin-openpay`,
+      options: {
+        MERCHANT_ID: process.env.GATSBY_MERCHANT_ID,
+        PUBLIC_API_KEY: process.env.GATSBY_PUBLIC_API_KEY,
+        production: "development",
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
